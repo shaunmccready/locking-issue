@@ -152,9 +152,6 @@ public abstract class BaseLockService {
             InterProcessMutex lock = lockHandle.getMutex();
             if (lock != null) {
                 lock.release();
-                client.delete()
-                        .deletingChildrenIfNeeded()
-                        .forPath(ZKPaths.makePath(getLockPath(), String.valueOf(lockHandle.getId())));
                 success = true;
             }
         } catch (Exception e) {

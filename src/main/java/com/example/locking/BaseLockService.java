@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -83,7 +84,7 @@ public abstract class BaseLockService {
     @PostConstruct
     public void init() {
         log.info("Stating initialization of the Lock Service");
-        locks = new HashMap<>();
+        locks = new ConcurrentHashMap<>();
         client = createClient();
         client.start();
 
